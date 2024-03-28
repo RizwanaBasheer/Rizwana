@@ -1,6 +1,6 @@
 ---
 - name: Deploy Apache Docker Container
-  hosts: 192.168.1.26
+  hosts: 10.0.0.4   
   become: true
   tasks:
     - name: Install Docker
@@ -26,12 +26,8 @@
         detach: true
         networks:
           - name: apache_network
-            ipv4_address: 172.168.10.2
+            driver: bridge
+            ipam:
+              config:
+                - subnet: 172.168.10.0/30
         restart_policy: always
-
-  networks:
-    - name: apache_network
-      driver: bridge
-      ipam:
-        config:
-          - subnet: 172.168.10.0/30
