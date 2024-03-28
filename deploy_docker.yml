@@ -1,6 +1,6 @@
 ---
 - name: Deploy Apache Docker Container
-  hosts: 10.0.0.4   
+  hosts: localhost   # Specify the appropriate host or group here
   become: true
   tasks:
     - name: Install Docker
