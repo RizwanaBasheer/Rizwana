@@ -9,6 +9,7 @@
       apt:
         name: python3
         state: present
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Install Docker.io and Python Docker library
       apt:
@@ -16,6 +17,7 @@
           - docker.io
           - python3-docker
         state: present
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Pull Apache Docker image
       docker_image:
