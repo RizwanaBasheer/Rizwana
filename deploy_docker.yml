@@ -5,6 +5,11 @@
   become: yes
 
   tasks:
+    - name: Install Python 3
+      apt:
+        name: python3
+        state: present
+
     - name: Install Docker.io and Python Docker library
       apt:
         name: 
