@@ -1,33 +1,35 @@
 ---
 - name: Deploy Apache Docker Container
-  hosts: 10.0.0.4   
-  become: true
+  hosts: localhost
+  gather_facts: no
+  become: yes
+
   tasks:
-    - name: Install Docker
+    - name: Install Docker dependencies
       apt:
-        name: docker.io
+        name: "{{ item }}"
         state: present
+      loop:
+        - docker.io
+        - python3-docker
 
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-
-    - name: Pull Apache image
+    - name: Pull Apache Docker image
       docker_image:
-        name: httpd:latest
+        name: httpd
+        source: pull
 
-    - name: Run Apache container
+    - name: Create directory for static web page
+      file:
+        path: /opt/static_web
+        state: directory
+
+    - name: Copy index.html file
+      copy:
+        src: index.html
+        dest: /opt/static_web/index.html
+
+    - name: Run Apache Docker container
       docker_container:
         name: apache_container
-        image: httpd:latest
-        ports:
-          - "80:80"
-        detach: true
-        networks:
-          - name: apache_network
-            driver: bridge
-            ipam:
-              config:
-                - subnet: 172.168.10.0/30
-        restart_policy: always
+        image: httpd
+        state: started
