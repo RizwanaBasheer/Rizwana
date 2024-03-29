@@ -1,23 +1,14 @@
 ---
 - name: Deploy Apache Docker Container
   hosts: localhost
-  gather_facts: yes
+  gather_facts: no
   become: yes
 
   tasks:
-    - name: Install Python 3
+    - name: Install Docker.io
       apt:
-        name: python3
+        name: docker.io
         state: present
-      when: ansible_distribution == 'Ubuntu'
-
-    - name: Install Docker.io and Python Docker library
-      apt:
-        name: 
-          - docker.io
-          - python3-docker
-        state: present
-      when: ansible_distribution == 'Ubuntu'
 
     - name: Pull Apache Docker image
       docker_image:
