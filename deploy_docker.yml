@@ -5,9 +5,11 @@
   become: yes
 
   tasks:
-    - name: Install Docker.io
+    - name: Install Docker.io and Python Docker library
       apt:
-        name: docker.io
+        name: 
+          - docker.io
+          - python3-docker
         state: present
 
     - name: Pull Apache Docker image
