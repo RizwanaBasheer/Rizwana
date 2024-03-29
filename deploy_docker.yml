@@ -1,5 +1,5 @@
 ---
-- name: Deploy Apache Docker Container
+- name: Deploy Apache Container
   hosts: localhost
   gather_facts: no
   become: yes
@@ -30,3 +30,5 @@
         name: apache_container
         image: httpd
         state: started
+        ports:
+          - "80:80"
