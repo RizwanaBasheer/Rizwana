@@ -1,9 +1,7 @@
 ---
-- name: Deploy Apache Container
+- name: Deploy Docker Container
   hosts: localhost
-  gather_facts: no
-  become: yes
-
+  
   tasks:
     - name: Install Docker.io
       apt:
@@ -14,21 +12,14 @@
       docker_image:
         name: httpd
         source: pull
-
-    - name: Create directory for static web page
-      file:
-        path: /opt/static_web
-        state: directory
-
-    - name: Copy index.html file
-      copy:
-        src: index.html
-        dest: /opt/static_web/index.html
+        state: present
 
     - name: Run Apache Docker container
       docker_container:
         name: apache_container
         image: httpd
         state: started
-        ports:
-          - "80:80"
+        network_node: bridge
+        published_ports:
+          - "8080:80"
+          
