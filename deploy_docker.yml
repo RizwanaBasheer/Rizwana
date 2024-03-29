@@ -5,13 +5,10 @@
   become: yes
 
   tasks:
-    - name: Install Docker dependencies
+    - name: Install Docker.io
       apt:
-        name: "{{ item }}"
+        name: docker.io
         state: present
-      loop:
-        - docker.io
-        - python3-docker
 
     - name: Pull Apache Docker image
       docker_image:
