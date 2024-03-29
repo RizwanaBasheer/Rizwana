@@ -19,7 +19,6 @@
         name: apache_container
         image: httpd
         state: started
-        network_node: bridge
         published_ports:
           - "8080:80"
           
