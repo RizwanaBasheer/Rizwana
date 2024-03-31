@@ -28,3 +28,13 @@
           - "8080:80"
         volumes:
           - "/var/www/html:/usr/local/apache2/htdocs"
+
+     - name: Check if directory exists
+       stat:
+         path: /path/to/directory
+         register: directory_info
+ 
+     - name: Print result
+       debug:
+         msg: "Directory exists: {{ directory_info.stat.exists }}"
+     
