@@ -24,7 +24,7 @@
         volumes:
           - "home/Rizwana/index.html:/usr/local/apache2/htdocs"
         networks:
-          - name: wesbserver_network
+          - name: my_network
             ipv4_address: 172.168.10.2/30
     
      
