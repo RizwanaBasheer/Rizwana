@@ -22,7 +22,7 @@
         published_ports:
           - "8080:80"
         volumes:
-          - "home/Rizwana/index.html:/usr/local/apache2/htdocs"
+          - "/Rizwana/index.html:/usr/local/apache2/htdocs"
       
     
      
