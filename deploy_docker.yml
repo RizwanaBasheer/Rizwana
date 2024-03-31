@@ -14,11 +14,6 @@
         source: pull
         state: present
         
-    - name: Copy HTML file to volume directory
-      copy:
-        src: /Rizwana/index.html
-        dest: /var/www/html/index.html
-
     - name: Run Apache Docker container with mounted volume
       docker_container:
         name: apache_container
@@ -27,7 +22,7 @@
         published_ports:
           - "8080:80"
         volumes:
-          - "/var/www/html:/usr/local/apache2/htdocs"
+       - "/Rizwana/index.html:/usr/local/apache2/htdocs"
 
     
      
