@@ -13,12 +13,14 @@
         name: httpd
         source: pull
         state: present
-
-    - name: Run Apache Docker container
+        
+    - name: Run Apache Docker container with mounted volume
       docker_container:
         name: apache_container
         image: httpd
         state: started
         published_ports:
           - "8080:80"
-          
+        volumes:
+          - "Rizwana/index:/usr/local/apache2/htdocs"
+
