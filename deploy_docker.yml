@@ -14,7 +14,7 @@
         source: pull
         state: present
 
-     - name: Create Docker network
+    - name: Create Docker network
        docker_network:
         name: my_network
         driver: bridge
