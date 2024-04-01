@@ -13,6 +13,14 @@
         name: httpd
         source: pull
         state: present
+
+     - name: Create Docker network
+       docker_network:
+        name: my_network
+        driver: bridge
+        ipam:
+          config:
+            - subnet: 172.168.10.0/30
         
     - name: Run Apache Docker container with mounted volume
       docker_container:
