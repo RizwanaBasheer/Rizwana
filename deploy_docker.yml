@@ -28,6 +28,6 @@
           - "/Rizwana/index.html:/usr/local/apache2/htdocs"
         networks:
           - name: my_network
-            ipv4_address: 172.168.10.2/30
+            ipv4_address: 172.168.10.2
     
      
