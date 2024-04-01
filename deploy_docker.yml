@@ -15,13 +15,13 @@
         state: present
 
     - name: Check if Docker network exists
-       docker_network_info:
+      docker_network_info:
           name: my_network
-       register: network_info
+      register: network_info
 
     - name: Create Docker network with desired subnet if it doesn't exist
-       command: docker network create --driver=bridge --subnet=172.168.10.0/30 my_network
-       when: network_info == {}
+      command: docker network create --driver=bridge --subnet=172.168.10.0/30 my_network
+      when: network_info == {}
         
     - name: Run Apache Docker container with mounted volume
       docker_container:
