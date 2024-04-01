@@ -18,7 +18,7 @@
       docker_network:
         name: my_network
         driver: bridge
-        ipam:
+        ipam_options:
           config:
             - subnet: 172.168.10.0/30
         
